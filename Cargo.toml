@@ -1,0 +1,7 @@
+[package]
+name = "pocc"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+derivative = "2.2.0"

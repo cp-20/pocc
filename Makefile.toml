@@ -1,0 +1,18 @@
+[tasks.build]
+command = "cargo"
+args = ["build"]
+
+[tasks.test]
+command = "./test.sh"
+args = ["--target", "./target/debug/pocc"]
+dependencies = ["build"]
+
+[tasks.perf]
+command = "./perf.sh"
+args = ["--target", "./target/debug/pocc"]
+dependencies = ["build"]
+
+[tasks.perf-clang]
+command = "./perf.sh"
+args = ["--target", "./target/debug/pocc", "--with-clang"]
+dependencies = ["build"]
