@@ -31,14 +31,17 @@ bench() {
   clang -o "$dist" -O0 "$dist_asm" 2>/dev/null
 
   if [ "$with_clang" = true ]; then
+    local dist_o0=".build/perf/${base_name}-o0"
     local dist_o1=".build/perf/${base_name}-o1"
     local dist_o2=".build/perf/${base_name}-o2"
     local dist_o3=".build/perf/${base_name}-o3"
+    clang -o "$dist_o0" -O0 "$src" 2>/dev/null
     clang -o "$dist_o1" -O1 "$src" 2>/dev/null
     clang -o "$dist_o2" -O2 "$src" 2>/dev/null
     clang -o "$dist_o3" -O3 "$src" 2>/dev/null
 
     hyperfine "./$dist ${args[@]}" \
+      "./$dist_o0 ${args[@]}" \
       "./$dist_o1 ${args[@]}" \
       "./$dist_o2 ${args[@]}" \
       "./$dist_o3 ${args[@]}"
